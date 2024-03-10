@@ -29,21 +29,15 @@ double expn(double x, uint16_t count) {
 }
 
 double sinn(double x, uint16_t count) {
-double y = 0;
-    double e = 0;
-    for (uint64_t i = 1; i <= count; i++) {
-        e += 1;
-        y += pown(-1, e - 1) * ((pown(x, 2 * i - 1) / fact(2 * i - 1)));
-    }
-    return y;
+double result = 0.0;
+for (uint16_t i = 1; i <= count; i++)
+  result = result + pown(-1, i - 1) * calcItem(x, 2 * i - 1);
+return result;
 }
 
 double cosn(double x, uint16_t count) {
- double result = 0;
-    double t = 0;
-    for (uint64_t i = 1; i <= count; i++) {
-        t += 1;
-        result += pown(-1, t - 1) * ((pown(x, 2 * i - 2) / fact(2 * i - 2)));
-    }
-    return result;
+double result = 0.0;
+for (uint16_t i = 1; i <= count; i++)
+  result = result + pown(-1, i - 1) * calcItem(x, 2 * i - 2);
+return result;
 }
