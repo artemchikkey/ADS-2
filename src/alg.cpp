@@ -1,19 +1,22 @@
 // Copyright 2022 NNTU-CS
 #include <cstdint>
 #include "alg.h"
-#include <cmath>
 
 
 double pown(double value, uint16_t n) {
-  double x = 0;
-  x = pow(value, n);
-  return x;
+    double x = 1.0;
+    for (uint64_t i = 0; i < n; i++) {
+        x *= value;
+    } 
+    return x;
 }
 
 uint64_t fact(uint16_t n) {
-int x = 0;
-x = tgamma(n+1);
-return x;
+  uint64_t res = 1;
+  for (uint64_t i = 1; i <= n; i++) {
+      res *= i;
+  }
+  return res;
 }
 
 double calcItem(double x, uint16_t n) {
@@ -29,15 +32,17 @@ double c = 0;
 }
 
 double sinn(double x, uint16_t count) {
-double result = 0.0;
-for (uint16_t i = 1; i <= count; i++)
-  result = result + pow(-1, i - 1) * calcItem(x, 2 * i - 1);
-return result;
+    double res = x;
+    for (uint16_t i = 2; i <= count; i++) {
+        rez += pown((-1.0), i - 1) * calcItem(x, (i * 2) - 1);
+    }
+    return res;
 }
 
 double cosn(double x, uint16_t count) {
-double result = 0.0;
-for (uint16_t i = 1; i <= count; i++)
-  result = result + pow(-1, i - 1) * calcItem(x, 2 * i - 2);
-return result;
+    double res = 1.0;
+    for (uint16_t i = 2; i <= count; i++) {
+        res += pown((-1.0), i - 1) * calcItem(x, (i * 2) - 2);
+    }
+    return res;
 }
